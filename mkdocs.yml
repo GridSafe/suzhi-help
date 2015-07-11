@@ -19,4 +19,17 @@ pages:
     - Go SDK: dev/go-sdk.md
     - 错误代码: dev/error-code.md
 
+- 常见问题:
+    - 为什么要使用 CDN: common/why-cdn.md
+    - 速致 CDN 服务: common/plan.md
+    - 怎样用好 CDN: common/how-to-use.md
+    - CDN 常见服务: common/cdn-serve.md
+
+- 域名接入:
+    - DNSPOD: domain/dnspod.md
+    - 万网: domain/net.md
+    - 新网: domain/xinnet.md
+    - 新网互联: domain/dns.md
+
+
 theme: mkdocs
