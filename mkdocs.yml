@@ -1,0 +1,22 @@
+site_name: 速致文档
+repo_url: https://github.com/GridSafe/suzhi-help
+pages:
+- 首页: index.md
+- 使用速致:
+    - 登录和注册: user-guide/signup-and-login.md
+    - 修改密码: user-guide/update-passwd.md
+    - 找回密码: user-guide/reset-passwd.md
+    - 添加域名: user-guide/add-domain.md
+    - 添加字域名: user-guide/add-sub-domain.md
+    - 图片处理: user-guide/img.md
+
+- 开发者资源:
+    - API 文档: dev/api-docs.md
+    - PHP SDK : dev/php-sdk.md
+    - Python2 SDK: dev/py2-sdk.md
+    - Nodejs SDK: dev/nodejs-sdk.md
+    - Java SDK: dev/java-sdk.md
+    - Go SDK: dev/go-sdk.md
+    - 错误代码: dev/error-code.md
+
+theme: mkdocs
