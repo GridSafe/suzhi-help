@@ -32,4 +32,5 @@ pages:
     - 新网互联: domain/dns.md
 
 
-theme: mkdocs
+# theme: flatly
+theme_dir: 'theme'
