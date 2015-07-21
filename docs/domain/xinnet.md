@@ -1,5 +1,5 @@
 
-# 新网 CNAME 接入云加速
+## 新网 CNAME 接入云加速
 
 1. 登录新网域名DIY自助管理面板dcp.xinnet.com
 

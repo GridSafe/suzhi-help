@@ -1,4 +1,4 @@
-# DNSPOD CNAME 接入云加速
+## DNSPOD CNAME 接入云加速
 
 1. 登入dnspod的域名管理页面
 
