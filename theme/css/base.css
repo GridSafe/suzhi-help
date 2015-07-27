@@ -13,7 +13,7 @@ ul.nav li.main {
     font-weight: bold;
 }
 
-div.col-md-3 {
+.col-md-3 {
     padding-left: 0;
 }
 
@@ -21,7 +21,7 @@ div.col-md-9 {
     padding-bottom: 100px;
 }
 
-div.source-links {
+.source-links {
     float: right;
 }
 
@@ -33,11 +33,14 @@ div.col-md-9 img {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin: 20px auto 30px auto;
 }
 
-h1, h2, h3 {
+h1, h2 {
     color: #444;
+}
+
+h3 {
+  color: #4fc3f7;
 }
 
 h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id]:before {
