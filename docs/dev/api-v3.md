@@ -1,18 +1,19 @@
-## 新版 API 文档
 
-### API 简介
-- 版本：V3.0（更新时间：2014.07)
+# 新版 API 文档
+------------
+
+## API 简介
+- 版本：V3.0（更新时间：2015.07)
 - 简介：速致将逐渐开放一系列API提供给广大用户，以便更好地使用我们的产品。
 - 使用对象：个人、企业用户。（如无特别说明，都可以使用）
 
-### 调用规范
+## 调用规范
 
-1. 调用地址: `https://www.cdnzz.com/apiv3/json`
+1. **调用地址: https://www.cdnzz.com/apiv3/json**
 2. 使用 POST 方式传递参数
 3. 接口返回:
     - 返回数据使用 JSON 格式
     - 数据结构如下:
-
 ```
 {
   "error": 0,   # 错误码, 非0表示出错
@@ -25,22 +26,22 @@
 
 ## 接口列表
 
-### 公共参数
+
+----
+#### 公共参数
 - user(必选): 用户账号 email
 - method(必选): 操作方法, 不指定方法或者方法名错误时返回可用方法名列表
 - token: 用户的 token, 通过 FetchToken 接口获取, 其他接口均需要该参数
 
 ----
-### 获取 Token
+#### 获取 Token
 - **参数**:
     - method: FetchToken
     - secretkey: 安全密钥, 可在官网 “个人信息” 页查看
     - exp(可选): token 失效时间点, unix timestamp, 默认 10分钟后失效
     - name(可选): 为 token 指定一个 name, 用于区分不同用途的 token, 默认无
-
 - **示例**:
-    `user=apitest@cdnzz.com&secretkey=<your secretkey>&method=FetchToken&name=test`
-
+*user=apitest@cdnzz.com&secretkey=<your secretkey>&method=FetchToken&name=test*
 - **返回**:
 ```
 {
@@ -57,10 +58,8 @@
   }
 }
 ```
-
 - **说明**:
-    token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
-
+token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 ```
 {
   "iss": "apitest@cdnzz.com",   # token的使用账户
@@ -70,14 +69,13 @@
 }
 ```
 
-### 添加域名
+----
+#### 添加域名
 - **参数**:
     - method: AddDomain
     - domain: 要添加的域名
-
 - **示例**:
-    `user=apitest@cdnzz.com&token=<your token>&method=AddDomain&domain=cdnzz.com`
-
+*user=apitest@cdnzz.com&token=<your token>&method=AddDomain&domain=cdnzz.com*
 - **返回**:
 ```
 {
@@ -91,17 +89,14 @@
 }
 ```
 
-### 获取域名验证信息
-- **说明**:
-    新添加的域名需要验证才可以使用,通过该接口获取验证需要用到的信息
-
+----
+#### 获取域名验证信息
+- **说明**: 新添加的域名需要验证才可以使用,通过该接口获取验证需要用到的信息
 - **参数**:
     - method: FetchVerifyInfo
     - domain: 操作的域名
-
 - **示例**:
-    `user=apitest@cdnzz.com&token=<your token>&method=FetchVerifyInfo&domain=cdnzz.com`
-
+*user=apitest@cdnzz.com&token=<your token>&method=FetchVerifyInfo&domain=cdnzz.com*
 - **返回**:
 ```
 {
@@ -116,16 +111,14 @@
 }
 ```
 
-### 请求验证域名
+----
+#### 请求验证域名
 - **说明**: 添加完验证信息后通过该接口发起域名验证请求，同时可根据返回信息获取域名验证状态
-
 - **参数**:
     - method: VerifyDomain
     - domain: 操作的域名
-
 - **示例**:
-    `user=apitest@cdnzz.com&token=<your token>&method=VerifyDomain&domain=cdnzz.com`
-
+*user=apitest@cdnzz.com&token=<your token>&method=VerifyDomain&domain=cdnzz.com*
 - **返回**: 对应域名的信息
 ```
 {
@@ -139,13 +132,12 @@
 }
 ```
 
-### 列出所有域名
+----
+#### 列出所有域名
 - **参数**:
     - method: ListDomain
-
 - **示例**:
-    `user=apitest@cdnzz.com&token=<your token>&method=ListDomain`
-
+*user=apitest@cdnzz.com&token=<your token>&method=ListDomain*
 - **返回**:
 ```
 {
@@ -166,17 +158,16 @@
 }
 ```
 
-### 添加子域名
+----
+#### 添加子域名
 - **参数**:
     - method: AddSubDomain
     - domain: 操作的域名
     - host: 要添加的子域名
     - type: 子域名类型, A 或者 CNAME
     - value: 子域名的值, A 记录对应 IP, CNAME 记录对应域名
-
 - **示例**:
-    `user=api@cdnzz.com&token=<token>&method=AddSubDomain&domain=cdnzz.com&host=img&type=CNAME&value=cdn.cdnzz.com`
-
+*user=apitest@cdnzz.com&token=<your token>&method=AddSubDomain&domain=cdnzz.com&host=static&type=CNAME&value=cdn.cdnzz.com*
 - **返回**:
 ```
 {
@@ -193,15 +184,14 @@
 }
 ```
 
-### 删除子域名
+----
+#### 删除子域名
 - **参数**:
     - method: DelSubDomain
     - domain: 操作的域名
     - sub_id: 删除的子域名ID(通过 ListSubDomain 获取)
-
 - **示例**:
-    `user=apitest@cdnzz.com&token=<your token>&method=DelSubDomain&domain=cdnzz.com&sub_id=5`
-
+*user=apitest@cdnzz.com&token=<your token>&method=DelSubDomain&domain=cdnzz.com&sub_id=5*
 - **返回**: 被删除的子域名信息
 ```
 {
@@ -218,14 +208,13 @@
 }
 ```
 
-### 列出所有子域名
+----
+#### 列出所有子域名
 - **参数**:
     - method: ListSubDomain
     - domain: 操作的域名
-
 - **示例**:
-    `user=apitest@cdnzz.com&token=<your token>&method=ListSubDomain&domain=cdnzz.com`
-
+*user=apitest@cdnzz.com&token=<your token>&method=ListSubDomain&domain=cdnzz.com*
 - **返回**:
 ```
 {
@@ -252,7 +241,8 @@
 }
 ```
 
-### 更改子域名
+----
+#### 更改子域名
 - **参数**:
     - method: ModifySubDomain
     - domain: 操作的域名
@@ -260,10 +250,8 @@
     - sub_id: 操作的子域名ID(通过 ListSubDomain 获取)
     - type: 新的子域名类型, A 或者 CNAME
     - value: 新的子域名值, A 记录对应 IP, CNAME 记录对应域名
-
 - **示例**:
-    `user=api@cdnzz.com&token=<token>&method=ModifySubDomain&domain=cdnzz.com&host=img&sub_id=4&type=A&value=8.8.8.8`
-
+*user=apitest@cdnzz.com&token=<your token>&method=ModifySubDomain&domain=cdnzz.com&host=static&sub_id=4&type=A&value=8.8.8.8*
 - **返回**:
 ```
 {
@@ -280,15 +268,14 @@
 }
 ```
 
-### 激活子域名
+----
+#### 激活子域名
 - **参数**:
     - method: ActiveSubDomain
     - domain: 操作的域名
     - sub_id: 操作的子域名ID(通过 ListSubDomain 获取)
-
 - **示例**:
-    `user=apitest@cdnzz.com&token=<your token>&method=ActiveSubDomain&domain=cdnzz.com&sub_id=4`
-
+*user=apitest@cdnzz.com&token=<your token>&method=ActiveSubDomain&domain=cdnzz.com&sub_id=4*
 - **返回**: 操作后的子域名信息
 ```
 {
@@ -305,15 +292,14 @@
 }
 ```
 
-### 使子域名回源
+----
+#### 使子域名回源
 - **参数**:
     - method: InactiveSubDomain
     - domain: 操作的域名
     - sub_id: 操作的子域名ID(通过 ListSubDomain 获取)
-
 - **示例**:
-    `user=apitest@cdnzz.com&token=<your token>&method=InactiveSubDomain&domain=cdnzz.com&sub_id=4`
-
+*user=apitest@cdnzz.com&token=<your token>&method=InactiveSubDomain&domain=cdnzz.com&sub_id=4*
 - **返回**: 操作后的子域名信息
 ```
 {
@@ -330,14 +316,13 @@
 }
 ```
 
-### 预加载
+----
+#### 预加载
 - **参数**:
     - method: AddPreload
     - url: 需要预加载的 url
-
 - **示例**:
-    `user=apitest@cdnzz.com&token=<your token>&method=AddPreload&url=http://static.cdnzz.com/logo.png`
-
+*user=apitest@cdnzz.com&token=<your token>&method=AddPreload&url=http://static.cdnzz.com/logo.png*
 - **返回**:
 ```
 {
@@ -350,14 +335,13 @@
 }
 ```
 
-### 清除缓存
+----
+#### 清除缓存
 - **参数**:
     - method: PurgeCache
     - url: 需要清除缓存的 url
-
 - **示例**:
-    `user=apitest@cdnzz.com&token=<your token>&method=PurgeCache&url=http://static.cdnzz.com/logo.png`
-
+*user=apitest@cdnzz.com&token=<your token>&method=PurgeCache&url=http://static.cdnzz.com/logo.png*
 - **返回**:
 ```
 {
@@ -370,8 +354,129 @@
 }
 ```
 
-## 错误码说明
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----
+#### 获取流量数据
+- **说明**: 查询指定时间区间内的流量数据
+- **参数**:
+    - domain: 指定查询的域名, 多个域名使用 ',' 分隔, 默认查询账户下所有域名的总流量
+    - sub_name: 指定查询的子域名, 默认查询 domain 下都所有子域名, 多个子域名使用 ',' 分隔,　如果指定了多个 domain 则不可指定 sub_name
+    - start_day: 开始日期, %Y%m%d 格式, 默认查询当天, 示例: 20150101
+    - end_day: 结束日期, 格式同 start_day, 默认查询１天的数据
+- **注意**:
+    - 返回数据的时间粒度会自动根据查询时间范围进行选择, 有 分钟/小时/天/月 几种粒度
+- **示例**:
+*apitest@cdnzz.com&token=<your token>&method=FetchTraffic&domain=cdnzz.com&sub_name=img&start_day=20150101&end_day=20150110*
+- **返回**:
+```
+{
+  "error": 0,
+  "msg": "",
+  "result": [
+    {
+      "compress": 0,    # 压缩节省的流量, 单位: bit
+      "datetime": "20150710000000",     # 时间格式 yyyymmddHHMMSS
+      "hit": 190454,    # CDN 命中次数
+      "miss": 9398,     # CDN 未命中次数
+      "traffic_hit": 20873426879,   # 命中产生的流量, 单位: bit
+      "traffic_miss": 1591256206    # 未命中产生的流量, 单位: bit
+    },
+    {
+      "compress": 0,
+      "datetime": "20150720000000",
+      "hit": 188098,
+      "miss": 9789,
+      "traffic_hit": 20686018210,
+      "traffic_miss": 1523263729
+    },
+    ...
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----
+#### 获取带宽数据
+- **说明**: 查询指定时间区间内的带宽数据
+- **参数**:
+    - domain: 指定查询的域名, 多个域名使用 ',' 分隔, 默认查询账户下所有域名的总带宽
+    - sub_name: 指定查询的子域名, 默认查询 domain 下都所有子域名, 多个子域名使用 ',' 分隔,　如果指定了多个 domain 则不可指定 sub_name
+    - start_day: 开始日期, %Y%m%d 格式, 默认查询当天, 示例: 20150101
+    - end_day: 结束日期, 格式同 start_day, 默认查询１天的数据
+- **注意**:
+    - 返回数据的时间粒度会自动根据查询时间范围进行选择, 有 5m/30m/2h/1d 几种粒度
+- **示例**:
+*apitest@cdnzz.com&token=<your token>&method=FetchBandwidth&domain=cdnzz.com&sub_name=img&start_day=20150101&end_day=20150110*
+- **返回**:
+```
+{
+  "error": 0,
+  "msg": "",
+  "result": [
+    {
+      "bandwidth": 151087641,   # 使用的带宽, 单位: bit
+      "datetime": "20150101000000"  # 时间格式 yyyymmddHHMMSS
+    },
+    {
+      "bandwidth": 78896124,
+      "datetime": "20150101003000"
+    },
+    {
+      "bandwidth": 91646283,
+      "datetime": "20150101010000"
+    },
+    {
+      "bandwidth": 49301379,
+      "datetime": "20150101013000"
+    },
+    ...
+}
+```
+
+
+
+
+
+
+
+
+
+
+------
+## 错误码说明
 - 错误码分类如下:
 ```
 10000: "Internal Server Error",     # 未知错误
