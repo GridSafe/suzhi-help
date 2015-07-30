@@ -1,5 +1,5 @@
 
-# 新版 API 文档
+# 速致 API.v3 文档
 ------------
 
 ## API 简介
@@ -8,7 +8,6 @@
 - 使用对象：个人、企业用户。（如无特别说明，都可以使用）
 
 ## 调用规范
-
 1. **调用地址: https://www.cdnzz.com/apiv3/json**
 2. 使用 POST 方式传递参数
 3. 接口返回:
@@ -28,13 +27,13 @@
 
 
 ----
-#### 公共参数
+### 公共参数
 - user(必选): 用户账号 email
 - method(必选): 操作方法, 不指定方法或者方法名错误时返回可用方法名列表
 - token: 用户的 token, 通过 FetchToken 接口获取, 其他接口均需要该参数
 
 ----
-#### 获取 Token
+### 获取Token
 - **参数**:
     - method: FetchToken
     - secretkey: 安全密钥, 可在官网 “个人信息” 页查看
@@ -68,6 +67,11 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
   "exp": 1432870303     # token 过期时间
 }
 ```
+
+
+
+### 域名操作
+
 
 ----
 #### 添加域名
@@ -157,6 +161,10 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
   ]
 }
 ```
+
+
+### 子域名操作
+
 
 ----
 #### 添加子域名
@@ -316,6 +324,10 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
+
+### 内容管理
+
+
 ----
 #### 预加载
 - **参数**:
@@ -355,21 +367,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 数据查询
 
 
 ----
@@ -411,23 +409,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ----
 #### 获取带宽数据
 - **说明**: 查询指定时间区间内的带宽数据
@@ -467,14 +448,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 ```
 
 
-
-
-
-
-
-
-
-
 ------
 ## 错误码说明
 - 错误码分类如下:
@@ -487,4 +460,10 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 10500: "Operate Failed"             # 执行操作失败
 ```
 - 10X\*\* 表示同一类错误，如 102** 均表示认证出错，msg 字段会有具体的错误说明
+
+
+------
+## SDK
+- Python SDK <https://github.com/GridSafe/grid-sdk-python2-v3>
+- PHP SDK <https://github.com/GridSafe/grid-sdk-php-v3>
 
