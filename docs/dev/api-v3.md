@@ -23,16 +23,16 @@
 ```
 
 
-## 接口列表
+## 调用接口
 
 
-----
+-----------
 ### 公共参数
 - user(必选): 用户账号 email
 - method(必选): 操作方法, 不指定方法或者方法名错误时返回可用方法名列表
 - token: 用户的 token, 通过 FetchToken 接口获取, 其他接口均需要该参数
 
-----
+------------
 ### 获取Token
 - **参数**:
     - method: FetchToken
@@ -70,10 +70,10 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 
 
 
+------------
 ### 域名操作
 
 
-----
 #### 添加域名
 - **参数**:
     - method: AddDomain
@@ -93,7 +93,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
-----
 #### 获取域名验证信息
 - **说明**: 新添加的域名需要验证才可以使用,通过该接口获取验证需要用到的信息
 - **参数**:
@@ -115,7 +114,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
-----
 #### 请求验证域名
 - **说明**: 添加完验证信息后通过该接口发起域名验证请求，同时可根据返回信息获取域名验证状态
 - **参数**:
@@ -136,7 +134,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
-----
 #### 列出所有域名
 - **参数**:
     - method: ListDomain
@@ -163,10 +160,10 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 ```
 
 
+--------------
 ### 子域名操作
 
 
-----
 #### 添加子域名
 - **参数**:
     - method: AddSubDomain
@@ -192,7 +189,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
-----
 #### 删除子域名
 - **参数**:
     - method: DelSubDomain
@@ -216,7 +212,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
-----
 #### 列出所有子域名
 - **参数**:
     - method: ListSubDomain
@@ -249,7 +244,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
-----
 #### 更改子域名
 - **参数**:
     - method: ModifySubDomain
@@ -276,7 +270,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
-----
 #### 激活子域名
 - **参数**:
     - method: ActiveSubDomain
@@ -300,7 +293,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
-----
 #### 使子域名回源
 - **参数**:
     - method: InactiveSubDomain
@@ -325,10 +317,10 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 ```
 
 
+--------------
 ### 内容管理
 
 
-----
 #### 预加载
 - **参数**:
     - method: AddPreload
@@ -347,7 +339,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
-----
 #### 清除缓存
 - **参数**:
     - method: PurgeCache
@@ -367,10 +358,10 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 ```
 
 
+------------
 ### 数据查询
 
 
-----
 #### 获取流量数据
 - **说明**: 查询指定时间区间内的流量数据
 - **参数**:
@@ -409,7 +400,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 ```
 
 
-----
 #### 获取带宽数据
 - **说明**: 查询指定时间区间内的带宽数据
 - **参数**:
@@ -448,7 +438,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 ```
 
 
-------
 ## 错误码说明
 - 错误码分类如下:
 ```
@@ -462,7 +451,6 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 - 10X\*\* 表示同一类错误，如 102** 均表示认证出错，msg 字段会有具体的错误说明
 
 
-------
 ## SDK
 - Python SDK <https://github.com/GridSafe/grid-sdk-python2-v3>
 - PHP SDK <https://github.com/GridSafe/grid-sdk-php-v3>
