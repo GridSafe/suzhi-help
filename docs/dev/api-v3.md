@@ -23,17 +23,17 @@
 ```
 
 
-## 调用接口
+## 基础接口
 
 
 -----------
-### 公共参数
+#### 公共参数
 - user(必选): 用户账号 email
 - method(必选): 操作方法, 不指定方法或者方法名错误时返回可用方法名列表
 - token: 用户的 token, 通过 FetchToken 接口获取, 其他接口均需要该参数
 
 ------------
-### 获取Token
+#### 获取Token
 - **参数**:
     - method: FetchToken
     - secretkey: 安全密钥, 可在官网 “个人信息” 页查看
@@ -71,7 +71,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 
 
 ------------
-### 域名操作
+## 域名操作
 
 
 #### 添加域名
@@ -161,7 +161,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 
 
 --------------
-### 子域名操作
+## 子域名操作
 
 
 #### 添加子域名
@@ -318,7 +318,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 
 
 --------------
-### 内容管理
+## 内容管理
 
 
 #### 预加载
@@ -359,7 +359,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 
 
 ------------
-### 数据查询
+## 数据查询
 
 
 #### 获取流量数据
@@ -381,7 +381,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
   "result": [
     {
       "compress": 0,    # 压缩节省的流量, 单位: bit
-      "datetime": "20150710000000",     # 时间格式 yyyymmddHHMMSS
+      "datetime": "20150101000000",     # 时间格式 yyyymmddHHMMSS
       "hit": 190454,    # CDN 命中次数
       "miss": 9398,     # CDN 未命中次数
       "traffic_hit": 20873426879,   # 命中产生的流量, 单位: bit
@@ -389,7 +389,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     },
     {
       "compress": 0,
-      "datetime": "20150720000000",
+      "datetime": "20150102000000",
       "hit": 188098,
       "miss": 9789,
       "traffic_hit": 20686018210,
@@ -446,9 +446,9 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 10260: "Invalid Token",             # Token 错误, 当返回此错误号时应该尝试重新生成 token
 10300: "Param Error",               # 请求参数出错
 10400: "Authorization Failed",      # 权限出错
-10500: "Operate Failed"             # 执行操作失败
+10500: "Operation Failed"           # 执行操作失败
 ```
-- 10X\*\* 表示同一类错误，如 102** 均表示认证出错，msg 字段会有具体的错误说明
+- 10X\*\* 表示同一类错误，如 102\*\* 均表示认证出错，msg 字段会有具体的错误说明
 
 
 ## SDK
