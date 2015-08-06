@@ -40,7 +40,7 @@
     - exp(可选): token 失效时间点, unix timestamp, 默认 10分钟后失效
     - name(可选): 为 token 指定一个 name, 用于区分不同用途的 token, 默认无
 - **示例**:
-*user=apitest@cdnzz.com&secretkey=<your secretkey>&method=FetchToken&name=test*
+`user=apitest@cdnzz.com&secretkey=<your secretkey>&method=FetchToken&name=test`
 - **返回**:
 ```
 {
@@ -79,7 +79,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - method: AddDomain
     - domain: 要添加的域名
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=AddDomain&domain=cdnzz.com*
+`user=apitest@cdnzz.com&token=<your token>&method=AddDomain&domain=cdnzz.com`
 - **返回**:
 ```
 {
@@ -99,7 +99,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - method: FetchVerifyInfo
     - domain: 操作的域名
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=FetchVerifyInfo&domain=cdnzz.com*
+`user=apitest@cdnzz.com&token=<your token>&method=FetchVerifyInfo&domain=cdnzz.com`
 - **返回**:
 ```
 {
@@ -120,7 +120,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - method: VerifyDomain
     - domain: 操作的域名
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=VerifyDomain&domain=cdnzz.com*
+`user=apitest@cdnzz.com&token=<your token>&method=VerifyDomain&domain=cdnzz.com`
 - **返回**: 对应域名的信息
 ```
 {
@@ -138,7 +138,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 - **参数**:
     - method: ListDomain
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=ListDomain*
+`user=apitest@cdnzz.com&token=<your token>&method=ListDomain`
 - **返回**:
 ```
 {
@@ -172,7 +172,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - type: 子域名类型, A 或者 CNAME
     - value: 子域名的值, A 记录对应 IP, CNAME 记录对应域名
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=AddSubDomain&domain=cdnzz.com&host=static&type=CNAME&value=cdn.cdnzz.com*
+`user=apitest@cdnzz.com&token=<your token>&method=AddSubDomain&domain=cdnzz.com&host=static&type=CNAME&value=cdn.cdnzz.com`
 - **返回**:
 ```
 {
@@ -195,7 +195,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - domain: 操作的域名
     - sub_id: 删除的子域名ID(通过 ListSubDomain 获取)
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=DelSubDomain&domain=cdnzz.com&sub_id=5*
+`user=apitest@cdnzz.com&token=<your token>&method=DelSubDomain&domain=cdnzz.com&sub_id=5`
 - **返回**: 被删除的子域名信息
 ```
 {
@@ -217,7 +217,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - method: ListSubDomain
     - domain: 操作的域名
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=ListSubDomain&domain=cdnzz.com*
+`user=apitest@cdnzz.com&token=<your token>&method=ListSubDomain&domain=cdnzz.com`
 - **返回**:
 ```
 {
@@ -253,7 +253,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - type: 新的子域名类型, A 或者 CNAME
     - value: 新的子域名值, A 记录对应 IP, CNAME 记录对应域名
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=ModifySubDomain&domain=cdnzz.com&host=static&sub_id=4&type=A&value=8.8.8.8*
+`user=apitest@cdnzz.com&token=<your token>&method=ModifySubDomain&domain=cdnzz.com&host=static&sub_id=4&type=A&value=8.8.8.8`
 - **返回**:
 ```
 {
@@ -276,7 +276,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - domain: 操作的域名
     - sub_id: 操作的子域名ID(通过 ListSubDomain 获取)
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=ActiveSubDomain&domain=cdnzz.com&sub_id=4*
+`user=apitest@cdnzz.com&token=<your token>&method=ActiveSubDomain&domain=cdnzz.com&sub_id=4`
 - **返回**: 操作后的子域名信息
 ```
 {
@@ -299,7 +299,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - domain: 操作的域名
     - sub_id: 操作的子域名ID(通过 ListSubDomain 获取)
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=InactiveSubDomain&domain=cdnzz.com&sub_id=4*
+`user=apitest@cdnzz.com&token=<your token>&method=InactiveSubDomain&domain=cdnzz.com&sub_id=4`
 - **返回**: 操作后的子域名信息
 ```
 {
@@ -326,7 +326,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - method: AddPreload
     - url: 需要预加载的 url
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=AddPreload&url=http://static.cdnzz.com/logo.png*
+`user=apitest@cdnzz.com&token=<your token>&method=AddPreload&url=http://static.cdnzz.com/logo.png`
 - **返回**:
 ```
 {
@@ -344,7 +344,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     - method: PurgeCache
     - url: 需要清除缓存的 url
 - **示例**:
-*user=apitest@cdnzz.com&token=<your token>&method=PurgeCache&url=http://static.cdnzz.com/logo.png*
+`user=apitest@cdnzz.com&token=<your token>&method=PurgeCache&url=http://static.cdnzz.com/logo.png*
 - **返回**:
 ```
 {
@@ -372,7 +372,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 - **注意**:
     - 返回数据的时间粒度会自动根据查询时间范围进行选择, 有 分钟/小时/天/月 几种粒度
 - **示例**:
-*apitest@cdnzz.com&token=<your token>&method=FetchTraffic&domain=cdnzz.com&sub_name=img&start_day=20150101&end_day=20150110*
+`user=apitest@cdnzz.com&token=<token>&method=FetchTraffic&domain=cdnzz.com&sub_name=img&start_day=20150101&end_day=20150110`
 - **返回**:
 ```
 {
@@ -410,7 +410,7 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 - **注意**:
     - 返回数据的时间粒度会自动根据查询时间范围进行选择, 有 5m/30m/2h/1d 几种粒度
 - **示例**:
-*apitest@cdnzz.com&token=<your token>&method=FetchBandwidth&domain=cdnzz.com&sub_name=img&start_day=20150101&end_day=20150110*
+`user=apitest@cdnzz.com&token=<token>&method=FetchBandwidth&domain=cdnzz.com&sub_name=img&start_day=20150101&end_day=20150110`
 - **返回**:
 ```
 {
@@ -436,6 +436,93 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
     ...
 }
 ```
+
+----
+## 云直播配置
+
+#### 添加 RTMP
+
+- **说明**: 添加一个指定时间的 RTMP 直播配置
+- **参数**:
+    - beg: 开始时间，格式为 `%Y%m%d%H%M%S` 如，20151011010101
+    - end: 结束时间，格式为 `%Y%m%d%H%M%S`
+    - record: 是否进行录制，默认为 0，表示不录制，1 表示录制
+    - file_path: 录制的指定路径
+- **注意**:
+    - 只有企业用户才可以进行直播的配置
+    - 使用直播录制的时候，需登录我们官网 首页 -> 产品 -> 云直播 处配置存储
+    - 当 record 为 0 时，或者没有配置好存储，file_path 无效
+- **示例**:
+`user=apitest@cdnzz.com&token=<token>&method=AddRTMP&beg=20150101010101&end=20150102010101&record=1&file_path=/abc`
+- **返回**:
+```
+{
+  "error": 0,
+  "msg": "",
+  "result": {
+      "id": 1
+      "beg": '20150101010101', # 格式为 %Y%m%d%H%M%S
+      "end": '20150102010101',
+      "record": 1,
+      "file_path": '/abc',
+      "push_url": ...,
+      "pull_url": ...
+    }
+}
+```
+
+#### 获取所有的 RTMP 信息
+
+- **说明**: 获取所有的直播配置
+- **参数**:
+    - 无
+- **示例**:
+`user=apitest@cdnzz.com&token=<your token>&method=GetRTMP`
+- **返回**:
+```
+{
+  "error": 0,
+  "msg": "",
+  "result": [{
+      "id": 1
+      "beg": '20150101010101',
+      "end": '20150102010101',
+      "record": 1,
+      "file_path": '/abc',
+      "push_url": ...,
+      "pull_url": ...
+    },
+    ...
+  ]
+}
+```
+
+
+#### 删除某个 RTMP 配置
+
+- **说明**: 删除一个 RTMP 直播配置
+- **参数**:
+    - id: 在调用添加和获取所有配置的时候可以看到 id
+- **示例**:
+`apitest@cdnzz.com&token=<your token>&method=DelRTMP&id=<id>`
+- **返回**:
+```
+{
+  "error": 0,
+  "msg": "",
+  "result": {
+      "id": 1
+      "beg": '20150101010101',
+      "end": '20150102010101',
+      "record": 1,
+      "file_path": '/abc',
+      "push_url": ...,
+      "pull_url": ...
+  }
+}
+```
+
+
 
 
 ## 错误码说明
