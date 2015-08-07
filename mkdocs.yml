@@ -16,6 +16,7 @@ pages:
     - 添加子域名: user-guide/add-sub-domain.md
     - 图片处理: user-guide/img.md
     - HLS 直播分发: user-guide/hls.md
+    - RTMP 直播分发: user-guide/rtmp.md
 
 - 域名接入:
     - DNSPOD: domain/dnspod.md
