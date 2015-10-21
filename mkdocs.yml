@@ -2,27 +2,25 @@ site_name: 速致文档中心
 repo_url: https://github.com/GridSafe/suzhi-help
 pages:
 - 首页: index.md
-- 常见问题:
-    - 为什么要使用 CDN: common/why-cdn.md
-    - 速致 CDN 服务: common/plan.md
-    - 怎样用好 CDN: common/how-to-use.md
-    - CDN 常见服务: common/cdn-serve.md
+
+- 关于速致:
+    - 技术框架: suzhi/tech.md
+    - 速致服务: suzhi/service.md
 
 - 使用速致:
+    - 常见问题:
+        - 为什么要使用 CDN: common/why-cdn.md
+        - 怎样用好 CDN: common/how-to-use.md
+        - CDN 常见服务: common/cdn-serve.md
     - 登录和注册: user-guide/signup-and-login.md
     - 修改密码: user-guide/update-passwd.md
     - 找回密码: user-guide/reset-passwd.md
     - 添加域名: user-guide/add-domain.md
     - 添加子域名: user-guide/add-sub-domain.md
+    - 域名接入（验证/指向）: user-guide/domain-handle.md
     - 图片处理: user-guide/img.md
     - HLS 直播分发: user-guide/hls.md
     - RTMP 直播分发: user-guide/rtmp.md
-
-- 域名接入:
-    - DNSPOD: domain/dnspod.md
-    - 万网: domain/net.md
-    - 新网: domain/xinnet.md
-    - 新网互联: domain/dns.md
 
 - 开发者资源:
     - API 文档: dev/api-v3.md

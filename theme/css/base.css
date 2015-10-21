@@ -281,3 +281,14 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
   list-style-type: none;
   list-style-image: none;
 }
+
+
+img {
+    border-radius: 6px;
+    margin-top: 10px;
+    padding: 4px;
+}
+
+h2 {
+    margin-top: 20px;
+}
