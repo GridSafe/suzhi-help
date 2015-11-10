@@ -13,7 +13,7 @@ API 请求域名 - `https://avapi.cdnzz.com/`
 
 具体的 API 验证方法:
 
-  1. 首先需要通过速致 API 获取相应的 token（参考在线文档 - `https://docs.cdnzz.com/dev/api-v3/#token`）
+  1. 首先需要通过速致 API 获取相应的 token（ [参考在线文档](https://docs.cdnzz.com/dev/api-v3/#token) ）
   2. 通过获取到的 token 进行视频转码的 API 请求
 
 注意，通过速致 API 获取到的 token 可以设置过期时间，过期时间内可以通过 token 去调用别的相关 API。
