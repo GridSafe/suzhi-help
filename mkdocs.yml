@@ -4,7 +4,6 @@ pages:
 - 首页: index.md
 
 - 关于速致:
-    - 技术框架: suzhi/tech.md
     - 速致服务: suzhi/service.md
 
 - 使用速致:
@@ -23,7 +22,9 @@ pages:
     - RTMP 直播分发: user-guide/rtmp.md
 
 - 开发者资源:
-    - API 文档: dev/api-v3.md
+    - 云分发 API 文档: dev/api-v3.md
+    - 视频转码 API 文档: dev/avapi.md
+    - 直播 API 文档: dev/liveapi.md
     - 旧版 API 文档: dev/api-docs.md
 
 - 运维分享:
@@ -32,6 +33,9 @@ pages:
     - 过期时间控制: share/expired.md
     - 获取用户访问的原始 IP: share/origin_ip.md
     - 源站状态检测: share/source.md
+
+- 产品课堂:
+    - 云分发: product/cdn.md
 
 
 # theme: flatly
