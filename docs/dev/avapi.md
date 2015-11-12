@@ -7,6 +7,8 @@
 
 ## 基本说明
 
+注意，使用 API 前需要在网站控制中心设置“转码方案”，详情请看 [这里](../user-guide/transcode/)
+
 API 请求域名 - `https://avapi.cdnzz.com/`
 
 基于 HTTPS 使用 POST 方式传递参数。
@@ -40,9 +42,13 @@ requests.post('https://avapi.cdnzz.com/video/upload', data=data,
 - **说明**: 添加一个视频文件到存储空间并进行具体的转码处理
 - **调用地址**: `https://avapi.cdnzz.com/video/upload`
 - **参数**:
-    - user: 用户账户 email 或者 用户名 user_name
-    - path: 具体文件的存储路径，例如 `/path/to/video/file.mp4`
-    - file: 视频文件的二进制数据内容
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
+| file | True | binary data | 视频文件的二进制数据内容 |
+
 - **注意**:
     - 只有企业用户才可以使用
 - **示例**:
@@ -60,8 +66,12 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 - **说明**: 添加一个视频到存储中进行转码
 - **调用地址**: `https://avapi.cdnzz.com/video/confirm`
 - **参数**:
-    - user: 用户账户 email
-    - path: 具体文件的存储路径，例如 `/path/to/video/file.mp4`
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
+
 - **注意**:
     - 只有企业用户才可以使用
 - **示例**:
@@ -80,5 +90,3 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 }
 ```
 
-------------------------------------------------------------------
-© 2012-2015 速致

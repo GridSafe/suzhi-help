@@ -20,6 +20,7 @@ pages:
     - 图片处理: user-guide/img.md
     - HLS 直播分发: user-guide/hls.md
     - RTMP 直播分发: user-guide/rtmp.md
+    - 云转码处理: user-guide/transcode.md
 
 - 开发者资源:
     - 云分发 API 文档: dev/api-v3.md
