@@ -27,23 +27,25 @@
 
 
 -----------
-#### 公共参数
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |    
-    |   user   |   True    |    string |   用户账号 email |  
-    |   method |   True    |    string |   操作方法, 不指定方法或者方法名错误时返回可用方法名列表 |  
-    |   token  |   True    |    string |   用户的 token, 通过 FetchToken 接口获取, 其他接口均需要该参数 |  
+#### 公共参数  
+
+  | 参数 | 必选 | 类型 | 说明 | 
+  | :----: | :----: | :---: | :-----: | 
+  | user | True | string |  用户账号 email | 
+  | method | True | string |  操作方法, 不指定方法或者方法名错误时返回可用方法名列表 | 
+  | token | True | string |  用户的 token, 通过 FetchToken 接口获取, 其他接口均需要该参数 | 
 
 ------------
 #### 获取Token
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |    True   |    string |   "FetchToken" |  
-    |   secretkey |   True  |   string |   安全密钥, 可在官网 “个人信息” 页查看 |  
-    |   exp   |   False |   string |   token 失效时间点, unix timestamp, 默认 10分钟后失效 |  
-    |    name |   False |   string |   为 token 指定一个 name, 用于区分不同用途的 token, 默认无 |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |   True   |   string |  "FetchToken" | 
+    |  secretkey |  True  |  string |  安全密钥, 可在官网 “个人信息” 页查看 | 
+    |  exp   |  False |  string |  token 失效时间点, unix timestamp, 默认 10分钟后失效 | 
+    |  name |  False |  string |  为 token 指定一个 name, 用于区分不同用途的 token, 默认无 | 
+
 - **示例**:
 `user=apitest@cdnzz.com&secretkey=<your secretkey>&method=FetchToken&name=test`
 - **返回**:
@@ -82,10 +84,11 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 #### 添加域名
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |   
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |   True    |   string  |   AddDomain |  
-    |   domain |   True    |   string  |   要添加的域名 |  
+    |  参数   |   必选   |  类型    |  说明  |  
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |  True    |  string  |  AddDomain | 
+    |  domain |  True    |  string  |  要添加的域名 | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=AddDomain&domain=cdnzz.com`
 - **返回**:
@@ -105,10 +108,11 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 - **说明**: 新添加的域名需要验证才可以使用,通过该接口获取验证需要用到的信息
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |    method |   True   |   string  |   "FetchVerifyInfo" |  
-    |   domain  |   True   |   string  |   操作的域名   |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |   method |  True   |  string  |  "FetchVerifyInfo" | 
+    |  domain  |  True   |  string  |  操作的域名   | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=FetchVerifyInfo&domain=cdnzz.com`
 - **返回**:
@@ -129,10 +133,11 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 - **说明**: 添加完验证信息后通过该接口发起域名验证请求，同时可根据返回信息获取域名验证状态
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |    method |   True  |    string  |    "VerifyDomain" |  
-    |    domain |   True  |    string  |   操作的域名  |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |   method |  True  |   string  |   "VerifyDomain" | 
+    |   domain |  True  |   string  |  操作的域名  | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=VerifyDomain&domain=cdnzz.com`
 - **返回**: 对应域名的信息
@@ -151,9 +156,10 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 #### 列出所有域名
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |   True    |   string  |   "ListDomain" |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |  True    |  string  |  "ListDomain" | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=ListDomain`
 - **返回**:
@@ -184,13 +190,14 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 #### 添加子域名
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |    True   |   string  |   AddSubDomain |  
-    |   domain |    True   |   string  |   操作的域名 |  
-    |    host  |    True   |   string  |   要添加的子域名 |  
-    |   type   |    True   |   string  |   子域名类型, A 或者 CNAME |  
-    |   value  |    True   |   string  |   子域名的值, A 记录对应 IP, CNAME 记录对应域名 |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |   True   |  string  |  AddSubDomain | 
+    |  domain |   True   |  string  |  操作的域名 | 
+    |   host  |   True   |  string  |  要添加的子域名 | 
+    |  type   |   True   |  string  |  子域名类型, A 或者 CNAME | 
+    |  value  |   True   |  string  |  子域名的值, A 记录对应 IP, CNAME 记录对应域名 | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=AddSubDomain&domain=cdnzz.com&host=static&type=CNAME&value=cdn.cdnzz.com`
 - **返回**:
@@ -212,11 +219,12 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 #### 删除子域名
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |    True   |   string  |   DelSubDomain |  
-    |   domain |    True   |   string  |   操作的域名   |  
-    |   sub_id |    True   |   string  |   删除的子域名ID(通过 ListSubDomain 获取) |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |   True   |  string  |  DelSubDomain | 
+    |  domain |   True   |  string  |  操作的域名   | 
+    |  sub_id |   True   |  string  |  删除的子域名ID(通过 ListSubDomain 获取) | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=DelSubDomain&domain=cdnzz.com&sub_id=5`
 - **返回**: 被删除的子域名信息
@@ -238,10 +246,11 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 #### 列出所有子域名
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |    True   |   string  |   "ListSubDomain" |  
-    |   domain |    True   |   string  |   操作的域名   |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |   True   |  string  |  "ListSubDomain" | 
+    |  domain |   True   |  string  |  操作的域名   | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=ListSubDomain&domain=cdnzz.com`
 - **返回**:
@@ -273,14 +282,15 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 #### 更改子域名
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |   True    |    string |   "ModifySubDomain" |  
-    |   domain |   True    |    string |   操作的域名  |  
-    |   host   |   True    |    string |   更改的子域名 |  
-    |   sub_id |   True    |    int    |   操作的子域名ID(通过 ListSubDomain 获取) |  
-    |   type   |   True    |    string |   新的子域名类型, A 或者 CNAME
-    - value: 新的子域名值, A 记录对应 IP, CNAME 记录对应域名
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |  True    |   string |  "ModifySubDomain" | 
+    |  domain |  True    |   string |  操作的域名  | 
+    |  host   |  True    |   string |  更改的子域名 | 
+    |  sub_id |  True    |   int    |  操作的子域名ID(通过 ListSubDomain 获取) | 
+    |  type  |  True    |   string |  新的子域名类型, A 或者 CNAME |
+    |  value  | True | 新的子域名值, A 记录对应 IP, CNAME 记录对应域名 |
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=ModifySubDomain&domain=cdnzz.com&host=static&sub_id=4&type=A&value=8.8.8.8`
 - **返回**:
@@ -302,11 +312,12 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 #### 激活子域名
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |    True   |   string   |   "ActiveSubDomain" |  
-    |   domain |    True   |   string   |   操作的域名  |  
-    |   sub_id |    True   |   string   |   操作的子域名ID(通过 ListSubDomain 获取) |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |   True   |  string   |  "ActiveSubDomain" | 
+    |  domain |   True   |  string   |  操作的域名  | 
+    |  sub_id |   True   |  string   |  操作的子域名ID(通过 ListSubDomain 获取) | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=ActiveSubDomain&domain=cdnzz.com&sub_id=4`
 - **返回**: 操作后的子域名信息
@@ -328,11 +339,12 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 #### 使子域名回源
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |   True    |   string  |   "InactiveSubDomain" |  
-    |   domain |   True    |   string  |   操作的域名 |  
-    |   sub_id |   True    |   string  |   操作的子域名ID(通过 ListSubDomain 获取) |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |  True    |  string  |  "InactiveSubDomain" | 
+    |  domain |  True    |  string  |  操作的域名 | 
+    |  sub_id |  True    |  string  |  操作的子域名ID(通过 ListSubDomain 获取) | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=InactiveSubDomain&domain=cdnzz.com&sub_id=4`
 - **返回**: 操作后的子域名信息
@@ -359,10 +371,11 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 #### 预加载
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |   True    |   string  |   " AddPreload" |  
-    |   url    |   True    |   string  |   需要预加载的 url |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |  True    |  string  |  " AddPreload" | 
+    |  url    |  True    |  string  |  需要预加载的 url | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=AddPreload&url=http://static.cdnzz.com/logo.png`
 - **返回**:
@@ -380,10 +393,11 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 #### 清除缓存
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   method |    True   |   string  |   "PurgeCache" |  
-    |    url   |    True   |   string  |   需要清除缓存的 url |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |   True   |  string  |  "PurgeCache" | 
+    |   url   |   True   |  string  |  需要清除缓存的 url | 
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=PurgeCache&url=http://static.cdnzz.com/logo.png*
 - **返回**:
@@ -407,12 +421,13 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 - **说明**: 查询指定时间区间内的流量数据
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   domain |   True  |   string  |   指定查询的域名, 多个域名使用 ',' 分隔, 默认查询账户下所有域名的总流量 |  
-    |   sub_name |   True |   string  |  指定查询的子域名, 默认查询 domain 下都所有子域名, 多个子域名使用 ',' 分隔,　如果指定了多个 domain 则不可指定 sub_name |  
-    |   start_day |   True |   string  |   开始日期, %Y%m%d 格式, 默认查询当天, 示例: 20150101 |  
-    |   end_day   |   True |   string  |   结束日期, 格式同 start_day, 默认查询１天的数据 |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  domain |  True  |  string  |  指定查询的域名, 多个域名使用 ',' 分隔, 默认查询账户下所有域名的总流量 | 
+    |  sub_name |  True |  string  | 指定查询的子域名, 默认查询 domain 下都所有子域名, 多个子域名使用 ',' 分隔,　如果指定了多个 domain 则不可指定 sub_name | 
+    |  start_day |  True |  string  |  开始日期, %Y%m%d 格式, 默认查询当天, 示例: 20150101 | 
+    |  end_day   |  True |  string  |  结束日期, 格式同 start_day, 默认查询１天的数据 | 
+
 - **注意**:
     - 返回数据的时间粒度会自动根据查询时间范围进行选择, 有 分钟/小时/天/月 几种粒度
 - **示例**:
@@ -448,12 +463,13 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 - **说明**: 查询指定时间区间内的带宽数据
 - **参数**:  
 
-    |   参数   |    必选   |   类型    |   说明  |  
-    |   :----: |   :-----: |   :-----: |   :------: |  
-    |   domain |    True   |    string |   指定查询的域名, 多个域名使用 ',' 分隔, 默认查询账户下所有域名的总带宽 |  
-    |   sub_name |   True  |    string |   指定查询的子域名, 默认查询 domain 下都所有子域名, 多个子域名使用 ',' 分隔,　如果指定了多个 domain 则不可指定 sub_name |  
-    |   start_day |   True |   string |   开始日期, %Y%m%d 格式, 默认查询当天, 示例: 20150101 |  
-    |   end_day   |   True |   string |   结束日期, 格式同 start_day, 默认查询１天的数据 |  
+    |  参数   |   必选   |  类型    |  说明  | 
+    | :----: | :-----: | :-----: | :------: | 
+    |  domain |   True   |   string |  指定查询的域名, 多个域名使用 ',' 分隔, 默认查询账户下所有域名的总带宽 | 
+    |  sub_name |  True  |   string |  指定查询的子域名, 默认查询 domain 下都所有子域名, 多个子域名使用 ',' 分隔,　如果指定了多个 domain 则不可指定 sub_name | 
+    |  start_day |  True |  string |  开始日期, %Y%m%d 格式, 默认查询当天, 示例: 20150101 | 
+    |  end_day   |  True |  string |  结束日期, 格式同 start_day, 默认查询１天的数据 | 
+
 - **注意**:
     - 返回数据的时间粒度会自动根据查询时间范围进行选择, 有 5m/30m/2h/1d 几种粒度
 - **示例**:
