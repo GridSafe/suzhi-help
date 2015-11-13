@@ -21,7 +21,8 @@ API 请求地址 - `https://www.cdnzz.com/apiv3/json`
 ### 添加 RTMP
 
 - **说明**: 添加一个指定时间的 RTMP 直播配置
-- **参数**:
+- **参数**:  
+
     |   参数   |    必选   |   类型    |   说明  |  
     |   :----: |   :-----: |   :-----: |   :------: |  
     |   beg    |    True   |    string |   开始时间，格式为 `%Y%m%d%H%M%S` 如，20151011010101 |  
@@ -53,7 +54,7 @@ API 请求地址 - `https://www.cdnzz.com/apiv3/json`
 ### 获取所有的 RTMP 信息
 
 - **说明**: 获取所有的直播配置
-- **参数**:
+- **参数**:  
     - 无
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=GetRTMP`
@@ -80,7 +81,8 @@ API 请求地址 - `https://www.cdnzz.com/apiv3/json`
 ### 删除某个 RTMP 配置
 
 - **说明**: 删除一个 RTMP 直播配置
-- **参数**:
+- **参数**:  
+
     |   参数   |    必选   |   类型    |   说明  |  
     |   :----: |   :-----: |   :-----: |   :------: |  
     |   id     |   True    |    int    |  在调用添加和获取所有配置的时候可以看到 id |  
