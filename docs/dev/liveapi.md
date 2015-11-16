@@ -21,11 +21,14 @@ API 请求地址 - `https://www.cdnzz.com/apiv3/json`
 ### 添加 RTMP
 
 - **说明**: 添加一个指定时间的 RTMP 直播配置
-- **参数**:
-    - beg: 开始时间，格式为 `%Y%m%d%H%M%S` 如，20151011010101
-    - end: 结束时间，格式为 `%Y%m%d%H%M%S`
-    - record: 是否进行录制，默认为 0，表示不录制，1 表示录制
-    - file_path: 录制的指定路径
+- **参数**:  
+
+    |  参数   |   必选   |  类型    |  说明  |  
+    | :----: | :-----: | :-----: | :------: |  
+    |  beg    |   True   |   string |  开始时间，格式为 `%Y%m%d%H%M%S` 如，20151011010101 |  
+    |  end    |   True   |   string |  结束时间，格式为 `%Y%m%d%H%M%S` - record: 是否进行录制，默认为 0，表示不录制，1 表示录制 |  
+    |  file_path |   True |   string |  录制的指定路径 |  
+
 - **注意**:
     - 只有企业用户才可以进行直播的配置
     - 使用直播录制的时候，需登录我们官网 首页 -> 产品 -> 云直播 处配置存储
@@ -52,7 +55,7 @@ API 请求地址 - `https://www.cdnzz.com/apiv3/json`
 ### 获取所有的 RTMP 信息
 
 - **说明**: 获取所有的直播配置
-- **参数**:
+- **参数**:  
     - 无
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=GetRTMP`
@@ -79,8 +82,12 @@ API 请求地址 - `https://www.cdnzz.com/apiv3/json`
 ### 删除某个 RTMP 配置
 
 - **说明**: 删除一个 RTMP 直播配置
-- **参数**:
-    - id: 在调用添加和获取所有配置的时候可以看到 id
+- **参数**:  
+
+    |  参数   |   必选   |  类型    |  说明  |  
+    | :----: | :-----: | :-----: | :------: |  
+    |  id  |  True    |   int    |  在调用添加和获取所有配置的时候可以看到 id |  
+
 - **示例**:
 `user=apitest@cdnzz.com&token=<your token>&method=DelRTMP&id=<id>`
 - **返回**:
