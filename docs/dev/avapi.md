@@ -112,6 +112,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 
 - **注意**:
     - 只有企业用户才可以使用
+    - 暂时不支持m3u8
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&seek=seek&count=count&offset=offset&reverse=1
 - **返回**:
