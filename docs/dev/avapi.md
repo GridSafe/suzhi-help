@@ -57,8 +57,11 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 
 ```
 {
-  "error": 0,
+  "status": 0,
   "msg": "",
+  "result": {
+    'urlpath': "*.m3u8"
+  }
 }
 ```
 
@@ -77,14 +80,13 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 - **返回**:
-其中 address 为对应上传文件 hls 转码后对应的文件访问入口。
+其中 urlpath 为对应上传文件 hls 转码后对应的文件访问入口。
 
 ```
 {
-  "error": 0,
+  "status": 0,
   "msg": "",
   "result": {
-    'status': 0 or 1,
     'urlpath': "*.m3u8"
   }
 }
