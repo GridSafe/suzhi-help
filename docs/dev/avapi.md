@@ -59,8 +59,12 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 
 ```
 {
-  "error": 0,
+  "status": 0, //0为成功，其他为错误
   "msg": "",
+  "result": {
+      'info':"" //视频简略信息
+  }
+  "session-id": "" //该次转码留存key
 }
 ```
 
@@ -78,6 +82,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 
 - **注意**:
     - 只有企业用户才可以使用
+    - 请求地址为视频地址，不是m3u8文件地址
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 - **返回**:
@@ -89,6 +94,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
   "msg": "",
   "result": {
     'urlpath': "*.m3u8"
+    'info': "" //视频原始简略信息
   }
 }
 ```
