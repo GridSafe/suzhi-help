@@ -86,7 +86,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 - **返回**:
-其中 address 为对应上传文件 hls 转码后对应的文件访问入口。
+其中 urlpath 为对应上传文件 hls 转码后对应的文件访问入口。
 
 ```
 {
