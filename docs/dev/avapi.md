@@ -4,6 +4,7 @@
 
 * 更新时间 1: 2015/08/20
 * 更新时间 2: 2015/11/10
+* 更新时间 3: 2015/12/03
 
 ## 基本说明
 
@@ -113,7 +114,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 | path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
 | space | True | string | 用户存储空间名，例如 `test` |
 | token | True | string | 令牌 |
-| seek | True | string | 截图起始秒数，不可超出视频长度，例如`20` |
+| seek | True | string | 截图起始秒数，例如`20` |
 | count | False | string | 截图数量，如果无此参数则请求单张截图 |
 | offset | False | string | 多张截图时间间隔，如果count大于1,则该参数必选，如果count无参数，则该参数无效 |
 | reverse | False | string | 多张截图时，选择正向或反向截图，仅在reverse存在且为1时采用逆序截图 |
@@ -122,6 +123,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
     - 只有企业用户才可以使用
     - 暂时不支持m3u8
     - 当请求多张截图时，仅返回视频范围内的截图
+    - seek 与 offset 本身以秒为单位，但均可使用浮点数例如 `1.1`, `3.1415`, 当使用浮点数时，可以表示毫秒单位的时间。
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&seek=seek&count=count&offset=offset&reverse=1
 - **返回**:
