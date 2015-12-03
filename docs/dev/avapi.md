@@ -50,9 +50,11 @@ requests.post('https://avapi.cdnzz.com/video/upload', data=data,
 | space | True | string | 用户存储空间名，例如 `test` |
 | token | True | string | 令牌 |
 | file | True | binary data | 视频文件的二进制数据内容 |
+| callback | False | string | （可选）视频转码后进行信息回调的地址 |
 
 - **注意**:
     - 只有企业用户才可以使用
+    - 对于 callback 参数，当提供一个可用回调 url，我们的转码程序会在视频文件处理完成后进行回调通知，回调 url 必须能访问且接收 POST 的请求，请求内容为包括 <path, user, space\> 信息的 JSON 格式序列化数据
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<video binary data\>
 - **返回**:

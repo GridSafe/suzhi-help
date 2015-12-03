@@ -500,6 +500,25 @@ token 使用 [JWT](http://jwt.io/) 方式编码, payload 如下:
 }
 ```
 
+####  获取线路的 IP
+- **说明**: 查询当前 CDN 线路所覆盖的 IP
+- **参数**:
+
+    |  参数名    |  必选    |  类型    |  备注    |
+    | :----: | :-----: | :-----: | :------: | 
+    |  method |  True    |  string  |  "Fetchcdnips" |
+
+- **示例**:
+`user=apitest@cdnzz.com&token=<token>&method=Fetchcdnips`
+- **返回**:
+```
+{
+    "msg": "",
+    "response": ["8.8.8.8", "9.9.9.9"],
+    "result": "Success",
+}
+```
+
 
 ## 错误码说明
 - 错误码分类如下:
