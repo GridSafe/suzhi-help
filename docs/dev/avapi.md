@@ -124,6 +124,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
     - 暂时不支持m3u8
     - 当请求多张截图时，仅返回视频范围内的截图
     - seek 与 offset 本身以秒为单位，但均可使用浮点数例如 `1.1`, `3.1415`, 当使用浮点数时，可以表示毫秒单位的时间。
+    - 返回图片命名以视频截图秒数为名，类似请求位于3.1415秒的截图，返回的即是3_142.jpg，默认小数精度保留3位。
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&seek=seek&count=count&offset=offset&reverse=1
 - **返回**:
@@ -135,8 +136,8 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&seek=seek
   "msg": "",
   "result": {
     img_sources:{
-        path/1.jpg,
-        path/2.jpg
+        path/3_000.jpg,
+        path/4_000.jpg
     }
   }
 }
