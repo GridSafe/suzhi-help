@@ -262,7 +262,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
   "status": 0, //0为成功，其他为错误
   "msg": "",
   "result": {
-      'info':"" //视频简略信息
+      'urlpath':"*.mp4" //视频地址
   }
   "session-id": "" //该次转码留存key
 }
