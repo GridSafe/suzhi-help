@@ -39,7 +39,7 @@ requests.post('https://avapi.cdnzz.com/video/upload', data=data,
               files={'file': open('path/to/file.mp4', 'rb')})
 ```
 
-## 视频文件上传
+## 视频文件上传自动转码
 - **说明**: 添加一个视频文件到存储空间并进行具体的转码处理
 - **调用地址**: `https://avapi.cdnzz.com/video/upload`
 - **参数**:
@@ -178,8 +178,38 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&is_full=1
 }
 ```
 
-## 视频转码为音频
-- **说明**:对已存储的视频进行转码
+## 视频文件上传
+- **说明**: 添加一个视频文件到存储空间,不进行任何处理
+- **调用地址**: `https://avapi.cdnzz.com/avhub/video/upload`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
+| space | True | string | 用户存储空间名，例如 `test` |
+| token | True | string | 令牌 |
+| file | True | binary data | 视频文件的二进制数据内容 |
+
+- **注意**:
+    - 只有企业用户才可以使用
+- **示例**:
+user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<video binary data\>
+- **返回**:
+
+```
+{
+  "status": 0, //0为成功，其他为错误
+  "msg": "",
+  "result": {
+      'info':"" //视频简略信息
+  }
+  "session-id": "" //该次转码留存key
+}
+```
+
+## 视频提取音频
+- **说明**:对已存储的视频进行音频提取
 - **调用地址**: `https://avapi.cdnzz.com/avhub/audio/extract`
 - **参数**:
 
@@ -208,7 +238,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 }
 ```
 
-## 视频转码为音频确认
+## 视频提取音频确认
 - **说明**:对已存储的视频转码为音频确认
 - **调用地址**: `https://avapi.cdnzz.com/avhub/audio/confirm`
 - **参数**:
@@ -235,35 +265,5 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
   "result": {
      "urlpath": "*.mp3",
   }
-}
-```
-
-## 视频文件上传(不转码)
-- **说明**: 添加一个视频文件到存储空间,不进行任何转码
-- **调用地址**: `https://avapi.cdnzz.com/avhub/video/upload`
-- **参数**:
-
-| 参数  |     必选  |   类型  | 说明 |
-| :-----:  | :---: | :----:  | :-----------------------------------:  |
-| user | True | string | email 或者 用户名 user_name |
-| path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
-| space | True | string | 用户存储空间名，例如 `test` |
-| token | True | string | 令牌 |
-| file | True | binary data | 视频文件的二进制数据内容 |
-
-- **注意**:
-    - 只有企业用户才可以使用
-- **示例**:
-user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<video binary data\>
-- **返回**:
-
-```
-{
-  "status": 0, //0为成功，其他为错误
-  "msg": "",
-  "result": {
-      'info':"" //视频简略信息
-  }
-  "session-id": "" //该次转码留存key
 }
 ```
