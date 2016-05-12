@@ -17,6 +17,7 @@ pages:
     - 添加域名: user-guide/add-domain.md
     - 添加子域名: user-guide/add-sub-domain.md
     - 域名接入（验证/指向）: user-guide/domain-handle.md
+    - 安全链接 : user-guide/secure_link.md
     - 图片处理: user-guide/img.md
     - HLS 直播分发: user-guide/hls.md
     - RTMP 直播分发: user-guide/rtmp.md
