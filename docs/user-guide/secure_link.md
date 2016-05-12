@@ -23,6 +23,8 @@ key|KEY值
 
 example：  
 
+* shell
+
 ```
 input:
 expire="2147483647"
@@ -36,6 +38,21 @@ openssl md5 -binary | openssl base64 | tr +/ -_ | tr -d =
 
 output:
 _e4Nc3iduzkWRm01TBBNYw
+```
+
+* python
+
+```python
+import md5
+import base64
+
+
+def get_token(expire, uri, domain, key):
+    base_str = "%s%s%s%s" % (expire, uri, domain, key)
+    bin_str = md5.md5(base_str).digest()
+    bs64_str = base64.b64encode(bin_str)
+    token = bs64_str.replace("+", "-").replace("/", "_").replace("=", "")
+    return token
 ```
 
 ### 路径匹配
