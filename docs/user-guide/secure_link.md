@@ -2,6 +2,10 @@
 
 对配置了安全链接的路径下的链接，需要通过KEY和过期时间对参数加密生成token作为参数。
 
+example: 
+
++ /s/link?szt=_e4Nc3iduzkWRm01TBBNYw&sze=2147483647
++ 上面的链接中，szt表示token，sze表示过期时间
 
 ### token生成方法
 
@@ -9,7 +13,7 @@
 
 参数|说明
 ------|------
-expire|过期时间
+sze|过期时间
 uri|链接路径
 domain|域名
 key|KEY值
