@@ -90,5 +90,64 @@ test.cdnzz.com为用户的加速域名。
 开启鉴权后，可以点击“修改”按钮进入设置令牌和令牌失效时间。
 
 鉴权url计算器：
-用户填写上频道名和流名，鉴权计算器可按照配置的播放或推流的令牌生成鉴权url，用户可直接拷贝过去播放或推流用。
+用户填写上频道名和流名，鉴权计算器可按照配置的播放或推流的令牌生成鉴权url，用户可直接拷贝过去播放或推流用。  
+生成url方法: 除此之外，用户也可以自己在程序中生成token,  
+生成url的参数  
+
+参数 | 说明
+-------| --------
+vhost  | 直播域名
+app    | 频道
+stream | 流名
+key    | 令牌
+
+生成算法：  
+
+* 将频道名(app)，流名(stream),以及令牌(key), 拼接成一个字符串，`base_str = app + stream + key`  
+* 将这个字符串进行md5哈希即得到token。  
+
+生成token之后，按照`rtmp://{vhost}/{app}?token={token}/stream`拼接即可以得到推流或播放的鉴权url。  
+
+sample:  
+
+* python
+```python
+import hashlib
+
+
+def get_token(app, stream, key):
+    s = '{}{}{}'.format(app, stream, key)
+    return hashlib.md5(s).hexdigest()
+
+
+def get_auth_url(vhost, app, stream, key):
+    token = get_token(app, stream, key)
+    url = 'rtmp://{}/{}?token={}/{}'.format(vhost, app, token, stream)
+    return url
+```
+* Golang
+```golang
+package main
+
+import (
+	"crypto/md5"
+	"encoding/hex"
+	"fmt"
+	"io"
+)
+
+func GetToken(app string, stream string, key string) string {
+	hash := md5.New()
+	s := app + stream + key
+	io.WriteString(hash, s)
+	token := hex.EncodeToString(hash.Sum(nil))
+	return token
+}
+
+func GetAuthUrl(vhost string, app string, stream string, key string) string {
+	token := GetToken(app, stream, key)
+	url := fmt.Sprintf("rtmp://%s/%s?token=%s/%s", vhost, app, token, stream)
+	return url
+}
+```
 
