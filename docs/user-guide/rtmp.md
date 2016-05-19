@@ -106,7 +106,8 @@ key    | 令牌
 * 将频道名(app)，流名(stream),以及令牌(key), 拼接成一个字符串，`base_str = app + stream + key`  
 * 将这个字符串进行md5哈希即得到token。  
 
-生成token之后，按照`rtmp://{vhost}/{app}?token={token}/stream`拼接即可以得到推流或播放的鉴权url。  
+生成token之后，按照`rtmp://{vhost}/{app}?token={token}/stream`拼接即可以得到播放的鉴权url。  
+生成token之后，按照`rtmp://push.rt.cdnzz.com/{app}?vhost={vhost}&token={token}/stream`拼接即可以得到推流的鉴权url。  
 
 sample:  
 
@@ -120,7 +121,14 @@ def get_token(app, stream, key):
     return hashlib.md5(s).hexdigest()
 
 
-def get_auth_url(vhost, app, stream, key):
+def get_auth_publish_url(vhost, app, stream, key):
+    token = get_token(app, stream, key)
+    url = 'rtmp://push.rt.cdnzz.com/{}?vhost={}&token={}/{}'.format(
+        app, vhost, token, stream)
+    return url
+
+
+def get_auth_play_url(vhost, app, stream, key):
     token = get_token(app, stream, key)
     url = 'rtmp://{}/{}?token={}/{}'.format(vhost, app, token, stream)
     return url
@@ -144,10 +152,28 @@ func GetToken(app string, stream string, key string) string {
 	return token
 }
 
-func GetAuthUrl(vhost string, app string, stream string, key string) string {
+func GetAuthPlayUrl(vhost string, app string, stream string, key string) string {
 	token := GetToken(app, stream, key)
 	url := fmt.Sprintf("rtmp://%s/%s?token=%s/%s", vhost, app, token, stream)
 	return url
 }
+
+func GetAuthPublishUrl(vhost string, app string, stream string, key string) string {
+	token := GetToken(app, stream, key)
+	url := fmt.Sprintf("rtmp://push.rt.cdnzz.com/%s?vhost=%s&token=%s/%s", app, vhost, token, stream)
+	return url
+}
+
 ```
+
+##### 8.黑白名单设置
+在某些场景下，可能需要对推流和播放的IP进行限制，速致支持直播域名下的黑白名单设置。可以设置某些IP或某些IP段才能（或不能）进行
+推流或播放。  
+在云直播 - 加速域名管理 - 加速域名管理详情页 - 黑白名单 设置黑白名单配置如下：
+![BlackWihte](../static/img/user-guide/RTMP-black-white1.png)
+![BlackWihte](../static/img/user-guide/RTMP-black-white2.png)
+点击黑白名单的"新增"按钮后,填入ip及下来选择推流或播放,即可生效。  
+黑白名单支持单个IP或整个IP段, 填写`xxx.xxx.xxx.xxx`是当个IP, `xxx.xxx.xxx.xxx/xx`是对整个IP段, 比如  
+填写 `192.168.1.20`则只对`192.168.1.20`生效。  
+填写`19.16.1.20/10`则对`19.16.0.0 ~ 19.16.3.255`整个IP段生效。  
 
