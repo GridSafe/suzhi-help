@@ -208,6 +208,70 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 }
 ```
 
+## 提交视频链接自动下载
+- **说明**: 添加一个视频文件的链接, 后台自动下载都指定的存储目录
+- **调用地址**: `https://avapi.cdnzz.com/video/download`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
+| space | True | string | 用户存储空间名，例如 `test` |
+| token | True | string | 令牌 |
+| url | True | string | 视频文件的链接地址 |
+| callback | False | string | （可选）视频下载信息回调的地址 |
+
+- **注意**:
+    - 只有企业用户才可以使用
+    - 提供的视频下载链接时普通用户可以自由下载的
+    - 对于 callback 参数，当提供一个可用回调 url，我们的转码程序会在视频文件处理完成后进行回调通知，回调 url 必须能访问且接收 POST 的请求，请求内容为包括 <user, savepath, url, status, msg\> 信息的 JSON 格式序列化数据
+- **示例**:
+user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=http://xxx.xxx.com/xxx/xxx.mp4
+- **返回**:
+
+```
+{
+  "status": 0, //0为成功，其他为错误
+  "msg": "", // 成功为ok, 或者时出错提示
+  "result": {
+  }
+}
+```
+
+## 添加视频转码任务
+- **说明**: 对存储中存在的视频进行转码
+- **调用地址**: `https://avapi.cdnzz.com/video/transcode`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
+| space | True | string | 用户存储空间名，例如 `test` |
+| token | True | string | 令牌 |
+| callback | False | string | （可选）视频转码后进行信息回调的地址 |
+
+- **注意**:
+    - 只有企业用户才可以使用
+    - 对于 callback 参数，当提供一个可用回调 url，我们的转码程序会在视频文件处理完成后进行回调通知，回调 url 必须能访问且接收 POST 的请求，请求内容为包括 <path, user, space\> 信息的 JSON 格式序列化数据
+- **示例**:
+user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
+- **返回**:
+
+```
+{
+  "status": 0, //0为成功，其他为错误
+  "msg": "",
+  "result": {
+      "info": {},//视频简略信息
+      "space": ""
+  }
+  "session-id": "" //该次转码留存key
+}
+```
+
+
 ## 视频提取音频
 - **说明**:对已存储的视频进行音频提取
 - **调用地址**: `https://avapi.cdnzz.com/avhub/audio/extract`
