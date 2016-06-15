@@ -8,7 +8,7 @@
 
 ## 基本说明
 
-注意，使用 API 前需要在网站控制中心设置“转码方案”，详情请看 [这里](../user-guide/transcode/)
+描述，使用 API 前需要在网站控制中心设置“转码方案”，详情请看 [这里](../user-guide/transcode/)
 
 API 请求域名 - `https://avapi.cdnzz.com/`
 
@@ -19,7 +19,7 @@ API 请求域名 - `https://avapi.cdnzz.com/`
   1. 首先需要通过速致 API 获取相应的 token（ [参考在线文档](https://docs.cdnzz.com/dev/api-v3/#token) ）
   2. 通过获取到的 token 进行视频转码的 API 请求
 
-注意，通过速致 API 获取到的 token 可以设置过期时间，过期时间内可以通过 token 去调用别的相关 API。
+描述，通过速致 API 获取到的 token 可以设置过期时间，过期时间内可以通过 token 去调用别的相关 API。
 
 Python 代码示例:
 
@@ -53,7 +53,7 @@ requests.post('https://avapi.cdnzz.com/video/upload', data=data,
 | file | True | binary data | 视频文件的二进制数据内容 |
 | callback | False | string | （可选）视频转码后进行信息回调的地址 |
 
-- **注意**:
+- **描述**:
     - 只有企业用户才可以使用
     - 对于 callback 参数，当提供一个可用回调 url，我们的转码程序会在视频文件处理完成后进行回调通知，回调 url 必须能访问且接收 POST 的请求，请求内容为包括 <path, user, space\> 信息的 JSON 格式序列化数据
 - **示例**:
@@ -83,7 +83,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 | space | True | string | 用户存储空间名，例如 `test` |
 | token | True | string | 令牌 |
 
-- **注意**:
+- **描述**:
     - 只有企业用户才可以使用
     - 请求地址为视频地址，不是m3u8文件地址
 - **示例**:
@@ -119,7 +119,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 | offset | False | string | 多张截图时间间隔，如果count大于1,则该参数必选，如果count无参数，则该参数无效 |
 | reverse | False | string | 多张截图时，选择正向或反向截图，仅在reverse存在且为1时采用逆序截图 |
 
-- **注意**:
+- **描述**:
     - 只有企业用户才可以使用
     - 暂时不支持m3u8
     - 当请求多张截图时，仅返回视频范围内的截图
@@ -157,7 +157,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&seek=seek
 | token | True | string | 令牌 |
 | is_full | False | string | 仅当该参数为1时，返回全部信息。 默认返回简单信息。 |
 
-- **注意**:
+- **描述**:
     - 只有企业用户才可以使用
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&is_full=1
@@ -191,7 +191,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&is_full=1
 | token | True | string | 令牌 |
 | file | True | binary data | 视频文件的二进制数据内容 |
 
-- **注意**:
+- **描述**:
     - 只有企业用户才可以使用
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<video binary data\>
@@ -222,9 +222,9 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 | url | True | string | 视频文件的链接地址 |
 | callback | False | string | （可选）视频下载信息回调的地址 |
 
-- **注意**:
+- **描述**:
     - 只有企业用户才可以使用
-    - 提供的视频下载链接时普通用户可以自由下载的
+    - 经过测试可以下载的视频完整包括优酷/网易视频/腾讯视频等主流的视频网站(2016.06.15)
     - 对于 callback 参数，当提供一个可用回调 url，我们的转码程序会在视频文件处理完成后进行回调通知，回调 url 必须能访问且接收 POST 的请求，请求内容为包括 <user, savepath, url, status, msg\> 信息的 JSON 格式序列化数据
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=http://xxx.xxx.com/xxx/xxx.mp4
@@ -252,7 +252,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=http
 | token | True | string | 令牌 |
 | callback | False | string | （可选）视频转码后进行信息回调的地址 |
 
-- **注意**:
+- **描述**:
     - 只有企业用户才可以使用
     - 对于 callback 参数，当提供一个可用回调 url，我们的转码程序会在视频文件处理完成后进行回调通知，回调 url 必须能访问且接收 POST 的请求，请求内容为包括 <path, user, space\> 信息的 JSON 格式序列化数据
 - **示例**:
@@ -284,7 +284,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 | space | True | string | 用户存储空间名，例如 `test` |
 | token | True | string | 令牌 |
 
-- **注意**:
+- **描述**:
     - 只有企业用户才可以使用
     - 请求地址为视频地址，不是m3u8文件地址
 - **示例**:
@@ -314,7 +314,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 | space | True | string | 用户存储空间名，例如 `test` |
 | token | True | string | 令牌 |
 
-- **注意**:
+- **描述**:
     - 只有企业用户才可以使用
     - 请求地址为视频地址，不是m3u8文件地址
 - **示例**:
