@@ -225,7 +225,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 - **描述**:
     - 只有企业用户才可以使用
     - 经过测试可以下载的视频完整包括优酷/网易视频/腾讯视频等主流的视频网站(2016.06.15)
-    - 对于 callback 参数，当提供一个可用回调 url，我们的转码程序会在视频文件处理完成后进行回调通知，回调 url 必须能访问且接收 POST 的请求，请求内容为包括 <user, savepath, url, status, msg\> 信息的 JSON 格式序列化数据
+    - 对于 callback 参数，当提供一个可用回调 url，我们的转码程序会在视频文件处理完成后进行回调通知，回调 url 必须能访问且接收POST的请求，回调内容为包括 <user, savepath, url, status, msg\> 信息的 JSON 格式序列化数据
 - **示例**:
 user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=http://xxx.xxx.com/xxx/xxx.mp4
 - **返回**:
@@ -236,6 +236,16 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=http
   "msg": "", // 成功为ok, 或者时出错提示
   "result": {
   }
+}
+```
+- **回调callback post数据格式**
+```
+{
+    "user": "", //调用接口的用户
+    "savepath": "", //下载视频的存储地址
+    "url": "", //提交下载的原始url
+    "status": 0, //0为下载成功, 其他为失败
+    "msg": "", //成功提示, 出错信息
 }
 ```
 
