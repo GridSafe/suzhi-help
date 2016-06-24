@@ -227,12 +227,12 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
     - 经过测试可以下载的视频完整包括优酷/网易视频/腾讯视频等主流的视频网站(2016.06.15)
     - 对于 callback 参数，当提供一个可用回调 url，我们的转码程序会在视频文件处理完成后进行回调通知，回调 url 必须能访问且接收POST的请求，回调内容为包括 <user, savepath, url, status, msg\> 信息的 JSON 格式序列化数据
 - **示例**:
-user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=http://xxx.xxx.com/xxx/xxx.mp4
+user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&url=http://xxx.xxx.com/xxx/xxx.mp4
 - **返回**:
 
 ```
 {
-  "status": 0, //0为成功，其他为错误
+  "status": 0, //3-完成, 4-下载失败, 5-合并失败
   "msg": "", // 成功为ok, 或者时出错提示
   "result": {
   }
@@ -244,7 +244,37 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=http
     "user": "", //调用接口的用户
     "savepath": "", //下载视频的存储地址
     "url": "", //提交下载的原始url
-    "status": 0, //0为下载成功, 其他为失败
+    "status": 0, //3-完成, 4-下载失败, 5-合并失败
+    "msg": "", //成功提示, 出错信息
+}
+```
+
+## 查询视频采集进度
+- **说明**: 和添加链接自动下载接口配套使用, 查询视频下载的进度状态
+- **调用地址**: `https://avapi.cdnzz.com/video/query-download-status`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
+| space | True | string | 用户存储空间名，例如 `test` |
+| token | True | string | 令牌 |
+| url | True | string | 视频文件的链接地址 |
+
+- **描述**:
+    - 只有企业用户才可以使用
+    - 参数要和提交视频链接自动下载接口的中相应的参数一致
+- **示例**:
+user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&url=http://xxx.xxx.com/xxx/xxx.mp4
+- **返回**:
+
+```
+{
+    "user": "", //调用接口的用户
+    "savepath": "", //下载视频的存储地址
+    "url": "", //提交下载的原始url
+    "status": 0, //0-未处理, 1-下载中, 2-合并中, 3-完成, 4-下载失败, 5-合并失败
     "msg": "", //成功提示, 出错信息
 }
 ```
