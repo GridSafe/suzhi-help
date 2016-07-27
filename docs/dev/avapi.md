@@ -371,3 +371,144 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
   }
 }
 ```
+
+## 视频分片上传接口
+- **说明**: 视频分片上传接口, 接收POST请求, 将POST请求的视频分片保存到存储, 可将大视频分成小片上传到存储, 在用合并接口将其合并成原始视频.
+- **调用地址**: `https://avapi.cdnzz.com/video/chunk/upload`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| space | True | string | 用户存储空间名，例如 `test` |
+| path | True | string | 最终合并成的完整视频存储路径，例如 `/path/to/video/cdnzz.mp4` |
+| token | True | string | 令牌 |
+| range | True | string | 上传视频分片的range, 格式0-4194304|
+| checksum | True | string | 上传视频分片的md5值 |
+| file  | True | binaryData | 视频分片的二进制数据内容 |
+
+- **描述**:  
+    - 只有企业用户才可以使用   
+    - range参数中, 0-4194304表示startByte - endByte(不包含该byte) 。例如要将一个大文件分成每片大小40M的分片进行上传, 则第一片seek(offset=0), range为0-41943040,
+第二片seek(offset=41943040), range为41943040-83886080, 依此类推, 其中最后一片的右值为文件的大小  
+    - 同一文件的同一分片可以多次上传, 假如上传的分片在存储已经存在一个md5值一致的分片, 则认为该分片已经上传完成, 否则将新提交的分片覆盖旧分片. 
+
+- **返回**:
+```
+{
+    "status": 0, // 0-分片上传中, 1-分片上传成功, 2-分片已经存在,无须重复上传
+    "msg": "", // 上传返回信息
+    "info": {  // 只有在分片上传成功时, 该字段才不会空
+        "range": "" // 本次上传片段的range
+        "md5sum":  // 本次上传分片文件内容的md5值
+    }
+}
+```
+
+## 视频分片上传查询接口
+- **说明**: 视频分片查询接口, 接收POST请求, 查询已经成功上传到存储的分片信息, 用户可以根据该接口自行判断视频分片是否已经全部完整的上传到存储
+- **调用地址**: `https://avapi.cdnzz.com/video/chunk/list`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| space | True | string | 用户存储空间名，例如 `test` |
+| path | True | string | 最终合并成的完整视频存储路径，例如 `/path/to/video/cdnzz.mp4` |
+| token | True | string | 令牌 |
+
+- **描述**
+    - 只有企业用户才可以使用
+    - 建议在分片合并之前调用该接口检查一下是否已经将全部分片上传完毕
+
+- **返回**
+```
+{
+    "status": 0 // 0表示成功, 其他为失败
+    "msg": "" // 查询失败的原因
+    "chuncks": [
+        {
+            "range": "0-4096", // 分片range
+            "md5sum": "", //该分片文件内容的md5值
+        },
+        {
+            "range": "4096-8192", // 分片range
+            "md5sum": "", // 该分片文件内容的md5值
+        },
+        ...
+    ]
+}
+```
+
+## 分片视频合并接口
+- **说明**: 在确认所有的视频分片已经全部完整的上传到存储后, 可调用该接口对这些分片将视频合并成一个完整的视频.
+- **调用地址**: `https://avapi.cdnzz.com/video/chunk/merge`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| path | True | string | 最终合并成的完整视频存储路径，例如 `/path/to/video/cdnzz.mp4` |
+| space | True | string | 用户存储空间名，例如 `test` |
+| token | True | string | 令牌 |
+| checksum| True | string | 完整视频的md5值 |
+| callback | False | string	|（可选）视频分片合并完成后回调的地址
+
+- **描述**
+    - 只有企业用户才可以使用
+    - 假设用户提供了回调接口的地址, 必须确认该接口能接收POST请求
+- **回调callback POST参数**
+```
+{
+     "user": "", //调用接口的用户
+     "status": 2,  // 2-合并成功, 3-合并完成,但格式检查失败, 4-文件md5值校验失败
+     "msg": "", // 解释信息
+     "info": {
+         "savepath": //  完整视频在存储中的存储位置
+         "size":  , // 完整视频的大小
+         "md5sum" : "" // 完整视频的md5值
+    }
+}
+```
+
+- **返回**
+```
+{
+    "status": 2,  // 2-合并成功, 3-文件格式检查失败, 4-文件md5值校验失败
+    "msg": "", //  解释信息
+    "info": {
+        "savepath": "" // 完整视频在存储中的存储位置
+        "size":  , // 完整视频的大小, bytes
+        "md5sum" : "" // 完整视屏的md5值
+    }
+}
+```
+
+## 视频分片合并状态查询接口
+- **说明**: 视频分片合并状态查询接口, 接收POST请求, 可查询视频分片合并状态
+- **调用地址**: `https://avapi.cdnzz.com/video/chunk/query-merge-status`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| space | True | string | 用户存储空间名，例如 `test` |
+| path | True | string | 最终合并成的完整视频存储路径，例如 `/path/to/video/cdnzz.mp4` |
+| token | True | string | 令牌 |
+
+- **描述**
+    - 只有企业用户才可以使用
+
+- **返回**
+```
+{
+    "user": "" //查询的用户
+    "status": 0 // 0-正在等待合并, 1-合并中, 2-合并成功, 3-文件格式检查失败, 4-文件md5校验失败
+    "msg": "" // 详细信息
+    "info": { // 若合并成功, 则放回视频信息
+        "savepath": "" // 完整视频在存储中的存储位置
+        "size":  , // 完整视频的大小, bytes
+        "md5sum" : "" // 完整视屏的md5值
+    }
+}
+```
