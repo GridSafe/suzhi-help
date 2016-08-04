@@ -512,3 +512,69 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
     }
 }
 ```
+
+## m3u8转mp4接口
+- **说明**: 用户上传可访问的m3u8链接，将其转成mp4保存到存储。
+- **调用地址**: `https://avapi.cdnzz.com/video/convert-m3u8-to-mp4`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| space | True | string | 用户存储空间名，例如 `test` |
+| path | True | string | 最终合并成的完整视频存储路径，例如 `/path/to/video/cdnzz.mp4` |
+| token | True | string | 令牌 |
+| url   | True | string | m3u8链接 |
+| callback | False | string | 回调链接，完成转录任务后将消息回调给用户|
+
+- **描述**
+    - 只有企业用户才可以使用
+    - 目前接口只能将可以播放的m3u8链接转成mp4
+    - 假设用户提供了回调接口的地址, 必须确认该接口能接收POST请求
+- **回调callback POST参数**
+```
+{
+     "user": "", //调用接口的用户
+     "status": 2,  // 2-转录成功 3-转录失败
+     "msg": "", // 详细信息
+     "info": {
+         "savepath": //  完整视频在存储中的存储位置
+    }
+}
+```
+
+- **返回**
+```
+{
+    "status": 0 // 0-成功， 其他-失败
+    "msg": "ok" // 详细信息
+}
+```
+
+## m3u8转mp4转录状态查询接口
+- **说明**: m3u8转mp4状态查询接口, 接收POST请求, 可查询转录的状态
+- **调用地址**: `https://avapi.cdnzz.com/video/query-m3u8-convert-status`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| space | True | string | 用户存储空间名，例如 `test` |
+| path | True | string | 最终合并成的完整视频存储路径，例如 `/path/to/video/cdnzz.mp4` |
+| token | True | string | 令牌 |
+| url   | True | string | m3u8链接 |
+
+- **描述**
+    - 只有企业用户才可以使用
+
+- **返回**
+```
+{
+    "user": "" //查询的用户
+    "status": 0 // 0-正在等待转录, 1-转录中, 2-转录成功, 3-转录失败
+    "msg": "" // 详细信息
+    "info": { 
+        "savepath": "" // 完整视频在存储中的存储位置
+    }
+}
+```
