@@ -8,7 +8,7 @@
 
 描述，使用 API 前需要在网站控制中心设置“转码方案”，详情请看 [这里](../user-guide/transcode/)
 
-API 请求域名 - `http://videoapi.cdnzz.com/`
+API 请求域名 - `https://videoapi.cdnzz.com/`
 
 基于 http 使用 POST 方式传递参数。
 
@@ -114,6 +114,37 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 | path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
 | space | True | string | 用户存储空间名，例如 `test` |
 | token | True | string | 令牌 |
+| callback | False | string | （可选）转码成功后回调地址 |
+
+- **描述**:
+    - 只有企业用户才可以使用
+    - 请求地址为视频地址，文件地址必须存在
+- **示例**:
+user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
+- **返回**:
+```
+{
+  "status": http-status-code,
+  "msg": msg,
+  "task_id": task_id,
+  "result": {
+    'info': "" //视频原始简略信息
+  }
+}
+```
+
+## 上传视频并添加转码任务API
+- **说明**: 上传视频并添加转码任务
+- **调用地址**: `http://videoapi.cdnzz.com/api/v1.0/video/upload-and-transcode`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
+| space | True | string | 用户存储空间名，例如 `test` |
+| token | True | string | 令牌 |
+| file | True | binary data | 视频文件的二进制数据内容 |
 | callback | False | string | （可选）转码成功后回调地址 |
 
 - **描述**:
