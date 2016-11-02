@@ -8,7 +8,7 @@
 
 描述，使用 API 前需要在网站控制中心设置“转码方案”，详情请看 [这里](../user-guide/transcode/)
 
-API 请求域名 - `http://videoapi.cdnzz.com/`
+API 请求域名 - `https://videoapi.cdnzz.com/`
 
 基于 http 使用 POST 方式传递参数。
 
