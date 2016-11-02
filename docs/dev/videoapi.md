@@ -10,11 +10,11 @@
 
 API 请求域名 - `https://videoapi.cdnzz.com/`
 
-基于 http 使用 POST 方式传递参数。
+基于 https 使用 POST 方式传递参数。
 
 具体的 API 验证方法:
 
-  1. 首先需要通过速致 API 获取相应的 token（ [参考在线文档](http://docs.cdnzz.com/dev/api-v3/#token) ）
+  1. 首先需要通过速致 API 获取相应的 token（ [参考在线文档](https://docs.cdnzz.com/dev/api-v3/#token) ）
   2. 通过获取到的 token 进行视频转码的 API 请求
 
 通过速致 API 获取到的 token 可以设置过期时间，过期时间内可以通过 token 去调用别的相关 API。
@@ -26,21 +26,21 @@ import requests
 
 def get_token():
     rd = dict(method="FetchToken", secretkey=key, user=user)
-    rv = requests.post('http://www.cdnzz.com/apiv3/json', data=rd)
+    rv = requests.post('https://www.cdnzz.com/apiv3/json', data=rd)
     rv = rv.json()
     token = rv['result']['token']
     return token
 
 token = get_token()
 data = dict(user=user, token=token, space='suzhi', path='/test/hello-world.mp4')
-requests.post('http://videoapi.cdnzz.com/api/v1.0/video/upload', data=data,
+requests.post('https://videoapi.cdnzz.com/api/v1.0/video/upload', data=data,
               files={'file': open('path/to/file.mp4', 'rb')})
 ```
 
 ## 状态码解析
-新版的APIAPI参数缺失／校验失败http-status-code不会默认返回200，而是根据相应的情况返回相应的状态码， 状态码及对应的含义如下
+新版的APIAPI参数缺失／校验失败https-status-code不会默认返回200，而是根据相应的情况返回相应的状态码， 状态码及对应的含义如下
 
-| http-status-code |  说明  |
+| https-status-code |  说明  |
 | :-----:  | :-----------------------------------:  |
 |  200     | 请求成功，已完成处理或已经将任务提交处理 |
 |  400     | 参数缺失/非法，或token过期 |
@@ -76,7 +76,7 @@ requests.post('http://videoapi.cdnzz.com/api/v1.0/video/upload', data=data,
 
 ## 上传视频文件到存储API
 - **说明**: 添加一个视频文件到存储空间
-- **调用地址**: `http://videoapi.cdnzz.com/api/v1.0/video/upload`
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/video/upload`
 - **参数**:
 
 | 参数  |     必选  |   类型  | 说明 |
@@ -95,7 +95,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 
 ```
 {
-  "status": http-status-code,
+  "status": https-status-code,
   "msg": "", // 简要说明
   "result": {
       'info':"" //视频简略信息
@@ -105,7 +105,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&file=<vid
 
 ## 添加视频转码任务API
 - **说明**: 选取存储中的一个文件进行转码
-- **调用地址**: `http://videoapi.cdnzz.com/api/v1.0/video/transcode`
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/video/transcode`
 - **参数**:
 
 | 参数  |     必选  |   类型  | 说明 |
@@ -124,7 +124,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 - **返回**:
 ```
 {
-  "status": http-status-code,
+  "status": https-status-code,
   "msg": msg,
   "task_id": task_id,
   "result": {
@@ -135,7 +135,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 
 ## 上传视频并添加转码任务API
 - **说明**: 上传视频并添加转码任务
-- **调用地址**: `http://videoapi.cdnzz.com/api/v1.0/video/upload-and-transcode`
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/video/upload-and-transcode`
 - **参数**:
 
 | 参数  |     必选  |   类型  | 说明 |
@@ -155,7 +155,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 - **返回**:
 ```
 {
-  "status": http-status-code,
+  "status": https-status-code,
   "msg": msg,
   "task_id": task_id,
   "result": {
@@ -167,7 +167,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 
 ## 视频截图请求API
 - **说明**: 对存储中存在的视频文件进行截图
-- **调用地址**: `http://videoapi.cdnzz.com/api/v1.0/video/screenshot`
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/video/screenshot`
 - **参数**:
 
 | 参数  |     必选  |   类型  | 说明 |
@@ -194,7 +194,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&seek=seek
 
 ```
 {
-  'status': http-status-code,
+  'status': https-status-code,
   "msg": "",
   "result": {
     img_sources:{
@@ -208,7 +208,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&seek=seek
 
 ## 视频信息请求API
 - **说明**: 获取存储在存在视频的信息
-- **调用地址**: `http://videoapi.cdnzz.com/api/v1.0/video/info`
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/video/info`
 - **参数**:
 
 | 参数  |     必选  |   类型  | 说明 |
@@ -228,7 +228,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&is_full=1
 
 ```
 {
-  'status': http-status-code,
+  'status': https-status-code,
   "msg": "",
   "result": {
     "bit_rate": "265680", 
@@ -242,7 +242,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&is_full=1
 
 ## 视频资源采集API
 - **说明**: 提交优酷等网络视频资源链接，将视频下载到指定存储路径
-- **调用地址**: `http://videoapi.cdnzz.com/api/v1.0/video/grab`
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/video/grab`
 - **参数**:
 
 | 参数  |     必选  |   类型  | 说明 |
@@ -258,12 +258,12 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&is_full=1
     - 只有企业用户才可以使用
     - 经过测试可以下载的视频完整包括优酷/网易视频/腾讯视频等主流的视频网站(2016.06.15)
 - **示例**:
-user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&url=http://xxx.xxx.com/xxx/xxx.mp4
+user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&url=https://xxx.xxx.com/xxx/xxx.mp4
 - **返回**:
 
 ```
 {
-  "status": http-status-code,
+  "status": https-status-code,
   "task_id": task_id,
   "msg": msg
 }
@@ -271,7 +271,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&url=http:
 
 ## 视频提取音频API
 - **说明**: 对存储中存在的视频进行提取音频
-- **调用地址**: `http://videoapi.cdnzz.com/api/v1.0/video/extract-audio`
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/video/extract-audio`
 - **参数**:
 
 | 参数  |     必选  |   类型  | 说明 |
@@ -290,7 +290,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 - **返回**:
 ```
 {
-  "status": http-status-code,
+  "status": https-status-code,
   "task_id": task_id,
   "msg": msg,
   "result": {
@@ -301,7 +301,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 
 ## m3u8转mp4API
 - **说明**: 提交可访问的m3u8资源链接，将其转成mp4存储到指定路径
-- **调用地址**: `http://videoapi.cdnzz.com/api/v1.0/m3u8/convert-m3u8-to-mp4`
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/m3u8/convert-m3u8-to-mp4`
 - **参数**:
 
 | 参数  |     必选  |   类型  | 说明 |
@@ -320,7 +320,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 - **返回**
 ```
 {
-    "status": http-status-code,
+    "status": https-status-code,
     "task_id": task_id,
     "msg": ""
 }
@@ -328,7 +328,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 
 ## 后台任务查询API
 - **说明**: 后台处理任务查询, 根据task_id查询任务的执行状况
-- **调用地址**: `http://videoapi.cdnzz.com/api/v1.0/task/query-status`
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/task/query-status`
 - **参数**:
 
 | 参数  |     必选  |   类型  | 说明 |
