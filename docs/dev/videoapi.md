@@ -314,7 +314,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 
 ## m3u8转mp4API
 - **说明**: 提交可访问的m3u8资源链接，将其转成mp4存储到指定路径
-- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/m3u8/convert-m3u8-to-mp4`
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/m3u8/convert-to-mp4`
 - **参数**:
 
 | 参数  |     必选  |   类型  | 说明 |
@@ -360,7 +360,8 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
     "msg": "",
     "task_status_info": {
         "status": task-status-code,
-        "task": "", // 对应的任务类型
+        "task": "", // 对应的任务类型, transcode - 转码, extract_audio - 提取音频,
+                    // grab_video - 视频采集, convert_m3u8_to_mp4 - m3u8转mp4
         "msg": "", //任务信息
         "path": "", // 文件路径
         "space": "", // 空间
