@@ -70,7 +70,7 @@ requests.post('https://videoapi.cdnzz.com/api/v1.0/video/upload', data=data,
 | 2        | 视频片段合并中 |
 | 3        | 视频下载成功 |
 | 4        | 视频下载失败 |
-| 3        | 视频合并失败 |
+| 5        | 视频合并失败 |
 
 ## 用户回调与状态查询
 对于每一个耗时的处理，API获取任务后将根据提交内容生成一个task_id, 根据这个task_id可以调用
