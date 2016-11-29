@@ -54,10 +54,23 @@ requests.post('https://videoapi.cdnzz.com/api/v1.0/video/upload', data=data,
 
 | task-status-code |  说明  |
 | :-----:  | :-----------------------------------:  |
+| -1       | 所查询的任务不存在 |
 | 0        | 任务未处理，在排队等待处理中 |
 | 1        | 任务处理中 |
 | 2        | 任务处理成功 |
 | 3        | 任务处理失败 |
+
+特别的，对视频资源采集API，返回消息中status字段状态码及其相应的含义如下:
+
+| task-status-code |  说明  |
+| :-----:  | :-----------------------------------:  |
+| -1       | 所查询的任务不存在 |
+| 0        | 视频未下载，在排队等待处理中 |
+| 1        | 视频下载中|
+| 2        | 视频片段合并中 |
+| 3        | 视频下载成功 |
+| 4        | 视频下载失败 |
+| 3        | 视频合并失败 |
 
 ## 用户回调与状态查询
 对于每一个耗时的处理，API获取任务后将根据提交内容生成一个task_id, 根据这个task_id可以调用
@@ -343,8 +356,14 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 - **返回**
 ```
 {
-    "status": task-status-code,
-    "task_id": "",
+    "status": https-status-code,
     "msg": "",
+    "task_status_info": {
+        "status": task-status-code,
+        "task": "", // 对应的任务类型
+        "msg": "", //任务信息
+        "path": "", // 文件路径
+        "space": "", // 空间
+    }
 }
 ```
