@@ -219,6 +219,41 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&seek=seek
 ```
 
 
+## 视频生成gif图片API
+- **说明**: 对存储中存在的视频文件某段区间生成gif动图
+- **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/video/clip-gif`
+- **参数**:
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
+| space | True | string | 用户存储空间名，例如 `test` |
+| token | True | string | 令牌 |
+| seek | True | int | 动图起始秒数，例如20 |
+| duration | True | int | 生成动图视频片段时长, 单位秒 |
+| width | False | int | 生成动图宽，默认为320 |
+
+- **描述**:
+    - 只有企业用户才可以使用
+    - 暂时不支持m3u8
+    - seek 与 duration 以秒为单位, 如果想在视频20秒处生成5秒动图，则seek=20, duration=5
+- **示例**:
+user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename&seek=seek&duration=duration&width=width
+- **返回**:
+
+
+```
+{
+  'status': https-status-code,
+  "msg": "",
+  "result": {
+      "gif": "xx/xxx.gif"
+  }
+}
+```
+
+
 ## 视频信息请求API
 - **说明**: 获取存储在存在视频的信息
 - **调用地址**: `https://videoapi.cdnzz.com/api/v1.0/video/info`
