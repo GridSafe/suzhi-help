@@ -403,3 +403,36 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
     }
 }
 ```
+
+## 压缩mp4API
+
+- **说明**：压缩mp4至指定码率，将压缩后的mp4存储到指定路径
+- **调用地址**：`https://videoapi.cdnzz.com/api/v1.0/video/compress-mp4`
+- **参数**：
+
+| 参数  |     必选  |   类型  | 说明 |
+| :-----:  | :---: | :----:  | :-----------------------------------:  |
+| user | True | string | email 或者 用户名 user_name |
+| path | True | string | 具体文件的存储路径，例如 `/path/to/video/file.mp4` |
+| space | True | string | 用户存储空间名，例如 `test` |
+| token | True | string | 令牌 |
+| bitrate | True | string | 输出码率，单位为kbps |
+| output | True | string | 输出文件的存储路径，例如 `/path/to/video/output-file.mp4` |
+|callback | False| string | （可选）提取完毕后回调地址 |
+
+- **描述**:
+    - 只有企业用户才可以使用
+    - 请求地址为视频地址，文件地址必须存在
+- **示例**:
+user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
+- **返回**:
+```
+{
+  "status": https-status-code,
+  "msg": msg,
+  "task_id": task_id,
+  "result": {
+    'info': "" //视频原始简略信息
+  }
+}
+```
