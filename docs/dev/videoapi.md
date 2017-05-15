@@ -417,6 +417,7 @@ user=apitest@cdnzz.com&token=<token\>&space=space&path=/video/filename
 | space | True | string | 用户存储空间名，例如 `test` |
 | token | True | string | 令牌 |
 | bitrate | True | string | 输出码率，单位为kbps |
+| resolution | False | string | 输出分辨率，单位为px |
 | output | True | string | 输出文件的存储路径，例如 `/path/to/video/output-file.mp4` |
 |callback | False| string | （可选）提取完毕后回调地址 |
 
